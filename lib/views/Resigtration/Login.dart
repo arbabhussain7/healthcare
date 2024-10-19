@@ -8,8 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healthcare/connect.dart';
 import 'package:healthcare/constant/colors_const.dart';
+import 'package:healthcare/views/AIRecommendation/ai_recommendation.dart';
 import 'package:healthcare/views/BottomNavBar/bottom_Navbar.dart';
 import 'package:healthcare/views/ForgotPassword/Email_Reset.dart';
+import 'package:healthcare/views/Home/home.dart';
 import 'package:healthcare/views/Resigtration/Signup.dart';
 import 'package:http/http.dart' as http;
 import 'package:healthcare/views/widgets/custom_button.dart';
@@ -383,14 +385,27 @@ class _SigninState extends State<Signin> {
                   height: 32.h,
                 ),
                 CustomButton(
-                    text: "Login",
-                    onPressed: () {
-                      // if (key!.currentState!.validate()) {
-                      //   Get.to(() => BottomNavBar());
-                      // }
-                      attemptLogin(
-                          emailController.text, passwordController.text);
-                    }),
+                  text: "Login",
+                  onPressed: () {
+                    if (groupValue == 0) {
+                      // Access Paid Services
+                      Get.to(() =>
+                          const BottomNavBar()); // Replace with your Home Screen class
+                    } else if (groupValue == 1) {
+                      // Access Basic Services
+                      Get.to(() =>
+                          const AiRecommendation()); // Replace with your AI Recommendation Screen class
+                    } else {
+                      // Handle case where no option is selected
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Please select a service option')),
+                      );
+                    }
+
+                    attemptLogin(emailController.text, passwordController.text);
+                  },
+                ),
                 SizedBox(
                   height: 30.h,
                 ),

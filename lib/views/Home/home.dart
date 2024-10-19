@@ -17,13 +17,13 @@ class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
 
   @override
-  State<homeScreen> createState() => _homeScreenState();
+  State<homeScreen> createState() => homeScreenState();
 }
 
-class _homeScreenState extends State<homeScreen> {
+class homeScreenState extends State<homeScreen> {
   List<dynamic> appointments = [];
   bool isLoading = true;
-  int patientId = id; // Example patient ID, you can dynamically pass this
+  int? patientId = id; // Example patient ID, you can dynamically pass this
   List<dynamic> doctors = [];
   String? doctorId; // Declare a variable to hold the doctor ID
 
